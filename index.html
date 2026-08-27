@@ -2131,11 +2131,11 @@
             <li><a href="#architecture">Architecture</a></li>
             <li><a href="#tech">Tech Stack</a></li>
             <li><a href="#timeline">Timeline</a></li>
-            <li><a href="/eco2/report.pdf" target="_blank" rel="noopener">Report</a></li>
+            <li><a href="/eco2/report.pdf" target="_blank" rel="noopener" class="report-link">Report</a></li>
         </ul>
         <div class="lang-toggle">
-            <button class="lang-btn active" onclick="setLang('ko')">한국어</button>
-            <button class="lang-btn" onclick="setLang('en')">EN</button>
+            <button class="lang-btn active" data-lang="ko" onclick="setLang('ko')">한국어</button>
+            <button class="lang-btn" data-lang="en" onclick="setLang('en')">EN</button>
         </div>
     </nav>
 
@@ -4307,7 +4307,7 @@
             <a href="https://github.com/eco2-team/backend" target="_blank" class="footer-link">
                 <span>GitHub (Backend)</span>
             </a>
-            <a href="/eco2/report.pdf" target="_blank" rel="noopener" class="footer-link">
+            <a href="/eco2/report.pdf" target="_blank" rel="noopener" class="footer-link report-link">
                 <span>Technical Report</span>
             </a>
             <a href="https://rooftopsnow.tistory.com/category/%EC%9D%B4%EC%BD%94%EC%97%90%EC%BD%94%28Eco%C2%B2%29" target="_blank" class="footer-link">
@@ -16950,27 +16950,26 @@ async def run_with_fallback(self, query: str) -> AgentResponse:
 
     <script>
         function setLang(lang) {
-            document.body.classList.remove('en');
-            if (lang === 'en') {
-                document.body.classList.add('en');
-            }
+            const locale = lang === 'en' ? 'en' : 'ko';
+            document.body.classList.toggle('en', locale === 'en');
+            document.documentElement.lang = locale;
 
             document.querySelectorAll('.lang-btn').forEach(btn => {
-                btn.classList.remove('active');
+                btn.classList.toggle('active', btn.dataset.lang === locale);
             });
-            event.target.classList.add('active');
+            document.querySelectorAll('.report-link').forEach(link => {
+                link.href = locale === 'en' ? '/eco2/report-en.pdf' : '/eco2/report.pdf';
+            });
 
-            localStorage.setItem('portfolio-lang', lang);
+            const url = new URL(window.location.href);
+            url.searchParams.set('lang', locale);
+            window.history.replaceState({}, '', url);
         }
 
-        // Load saved language
+        // The explicit query parameter is the language source of truth.
         document.addEventListener('DOMContentLoaded', () => {
-            const savedLang = localStorage.getItem('portfolio-lang');
-            if (savedLang === 'en') {
-                setLang('en');
-                document.querySelectorAll('.lang-btn')[1].classList.add('active');
-                document.querySelectorAll('.lang-btn')[0].classList.remove('active');
-            }
+            const lang = new URLSearchParams(window.location.search).get('lang');
+            setLang(lang === 'en' ? 'en' : 'ko');
         });
 
         // Smooth scroll for navigation
