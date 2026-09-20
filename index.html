@@ -2118,6 +2118,10 @@
                 grid-template-columns: 1fr;
             }
         }
+        .roadmap-reading { max-width: 78ch; margin: 0 auto; }
+        .roadmap-reading p, .roadmap-reading ul { margin: 1rem 0; color: var(--text-secondary); }
+        .roadmap-reading ul { padding-left: 1.25rem; }
+        .roadmap-reading a { color: var(--accent-light); text-underline-offset: 0.2em; }
     </style>
 </head>
 <body>
@@ -2127,6 +2131,7 @@
         <ul class="nav-links">
             <li><a href="#overview">Overview</a></li>
             <li><a href="#methodology">Methodology</a></li>
+            <li><a href="#rsi-roadmap">Roadmap</a></li>
             <li><a href="#categories">Categories</a></li>
             <li><a href="#architecture">Architecture</a></li>
             <li><a href="#tech">Tech Stack</a></li>
@@ -2197,6 +2202,26 @@
                     <span class="lang-en">Service Closed (12.02~02.25)</span>
                 </div>
             </div>
+        </div>
+    </section>
+
+    <section class="section" id="rsi-roadmap" aria-labelledby="rsi-title">
+        <div class="section-header">
+            <div class="section-number">RESEARCH DIRECTION · 2026-09-21</div>
+            <h2 class="section-title" id="rsi-title">
+                <span class="lang-ko">답변 수정에서, 다음 실행에 남는 개선으로</span>
+                <span class="lang-en">From a better answer to an inherited improvement</span>
+            </h2>
+        </div>
+        <div class="roadmap-reading">
+            <p><span class="lang-ko">현재 Eco²는 <strong>작업 내 답변 개선(B0)과 운영 관측 기반</strong>을 구현했습니다. 개발 에이전트가 코드·문서·Skills를 남기는 과정은 별도로 관리합니다. 제품이 개선 전략 자체를 자율적으로 바꾼다는 뜻은 아닙니다.</span><span class="lang-en">Eco² implements <strong>task-local answer refinement (B0) and operational observation infrastructure</strong>. Developer-agent code, documents and Skills belong to a separate process. This is not a claim that the product autonomously revises its improvement strategy.</span></p>
+            <ul>
+                <li><span class="lang-ko"><strong>RSI L1 · 개선 실행:</strong> 사람의 변경 절차를 지원하는 개발 문서·CI·GitOps가 있습니다. 실패, 후보 diff, 채택 revision과 다음 실행의 연결이 다음 검증 과제입니다.</span><span class="lang-en"><strong>RSI L1 · Execution:</strong> developer instructions, CI and GitOps support externally specified changes. Next: connect a failure, candidate diff, accepted revision and the next run.</span></li>
+                <li><span class="lang-ko"><strong>RSI L2–L3 · 전략과 경험 선택:</strong> 로그 수집과 자동 재시도만으로 달성되지 않습니다. 고정 평가·동일 예산에서 후보 생성과 실패 표본 선택의 효과를 검증할 계획입니다.</span><span class="lang-en"><strong>RSI L2–L3 · Strategy and experience:</strong> logs and retries alone do not establish these levels. Candidate generation and failure sampling need fixed-evaluation, equal-budget comparisons.</span></li>
+                <li><span class="lang-ko"><strong>RSI L4–L5 · 배포 적응과 개선 메커니즘 계승:</strong> 연구 방향입니다. 운영 경험에 따른 정책 변경과 개선 방법 자체의 효과는 아직 입증하지 않았습니다.</span><span class="lang-en"><strong>RSI L4–L5 · Adaptation and recursive inheritance:</strong> research directions. Persistent policy adaptation and stronger improvement mechanisms are not demonstrated here.</span></li>
+            </ul>
+            <p><span class="lang-ko">기준은 <a href="https://arxiv.org/abs/2609.11873v2">Duan et al.의 RSI 백서 v2</a>입니다. 논문 저자의 인증이 아닌 프로젝트 자체 대응표입니다. 기존 <strong>eval L1/L2/L3</strong>는 grader 계층, 클러스터의 layer는 인프라 계층이며 RSI 단계와 다릅니다. 서비스는 종료됐고, 현재 표시는 공개 코드 감사 범위입니다.</span><span class="lang-en">Our reference is <a href="https://arxiv.org/abs/2609.11873v2">Duan et al.’s RSI whitepaper v2</a>, not certification by its authors. Existing <strong>eval L1/L2/L3</strong> label grader tiers; infrastructure layers describe topology. Neither is the RSI scale. The service is closed; this is a public-source audit.</span></p>
+            <p><a href="https://github.com/mangowhoiscloud/eco2/blob/main/docs/rsi-roadmap.md"><span class="lang-ko">용어·전체 로드맵·코드 근거</span><span class="lang-en">Terminology, full roadmap and source evidence</span></a> · <a href="https://mangowhoiscloud.github.io/geode/docs/explanation/rsi-roadmap/"><span class="lang-ko">GEODE의 동일 기준 로드맵</span><span class="lang-en">GEODE under the same criteria</span></a></p>
         </div>
     </section>
 
@@ -2459,7 +2484,7 @@
                 <!-- Center - Clickable -->
                 <div class="cycle-center clickable" onclick="openModal('modal-context-first')" style="cursor: pointer;">
                     <div class="cycle-center-icon">🔁</div>
-                    <div class="cycle-center-text">Recursive Self-Improvement</div>
+                    <div class="cycle-center-text">Human-directed Improvement</div>
                     <div class="cycle-center-sub">
                         <span class="lang-ko">💡 클릭하여 상세 보기</span>
                         <span class="lang-en">💡 Click for details</span>
@@ -3165,8 +3190,8 @@
                 </div>
                 <div class="category-content">
                     <p class="category-desc">
-                        <span class="lang-ko">Agent-Driven Development의 <strong>Recursive Self-Improvement</strong>를 위해 <strong>로그-트레이스-메트릭 통합</strong>이 필수였습니다. Helm Chart 대신 ECK Operator를 선택해 ES 클러스터 관리 복잡도를 낮추고, ECS 스키마로 8개 도메인의 로그 포맷을 표준화했습니다.</span>
-                        <span class="lang-en"><strong>Log-trace-metric integration</strong> was essential for Agent-Driven Development's <strong>Recursive Self-Improvement</strong>. Chose ECK Operator over Helm Charts to reduce ES cluster management complexity, standardized log format across 8 domains with ECS schema.</span>
+                        <span class="lang-ko">개발자가 장애를 진단하고 개발 에이전트에 변경 근거를 전달하도록 <strong>로그·트레이스·메트릭을 통합</strong>했습니다. Helm Chart 대신 ECK Operator를 선택해 ES 클러스터 관리 복잡도를 낮추고, ECS 스키마로 8개 도메인의 로그 포맷을 표준화했습니다.</span>
+                        <span class="lang-en"><strong>Logs, traces and metrics</strong> let developers diagnose incidents and provide evidence to development agents. We chose ECK Operator over Helm Charts for ES cluster management and standardized logs across 8 domains with ECS schema.</span>
                     </p>
                     <div class="achievements">
                         <div class="achievement clickable" data-modal="modal-obs-efk">
@@ -6890,6 +6915,10 @@ FALLBACK_CHAIN: dict[str, list[str]] = {
         <div class="modal-content" style="max-width: 1100px;">
             <button class="modal-close" onclick="closeModal('modal-chat-evaluation')">×</button>
             <h3 class="modal-title">🧀 LLM Evaluation Pipeline (Swiss Cheese Model)</h3>
+            <p style="color: var(--text-secondary); margin-bottom: 1rem;">
+                <span class="lang-ko">여기의 L1/L2/L3는 <strong>eval tier</strong>이며 RSI 자율성 단계가 아닙니다. 공개 코드의 평가·재생성 기본값은 OFF입니다. 실제 설정과 grader 주입을 확인해야 하며, passthrough 결과나 route 이름 pass를 검증 통과로 간주하지 않습니다.</span>
+                <span class="lang-en">L1/L2/L3 here are <strong>eval tiers</strong>, not RSI autonomy levels. Public-source defaults disable evaluation and regeneration. Verify configuration and grader injection; a passthrough result or route named pass is not verified success.</span>
+            </p>
 
             <!-- Swiss Cheese Explanation -->
             <div style="background: linear-gradient(135deg, rgba(245,158,11,0.15), rgba(234,88,12,0.1)); border: 1px solid rgba(245,158,11,0.4); border-radius: 12px; padding: 1.25rem; margin-bottom: 1.5rem;">
@@ -9496,7 +9525,7 @@ FALLBACK_CHAIN: dict[str, list[str]] = {
     <div class="modal-overlay" id="modal-obs-cycle">
         <div class="modal-content" style="max-width: 1150px;">
             <button class="modal-close" onclick="closeModal('modal-obs-cycle')">×</button>
-            <h3 class="modal-title">📊 Observability: Recursive Self-Improvement Feedback Loop</h3>
+            <h3 class="modal-title">📊 Observability: Human-directed Improvement</h3>
 
             <!-- Three Pillars Overview -->
             <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-bottom: 1.5rem;">
@@ -9532,7 +9561,7 @@ FALLBACK_CHAIN: dict[str, list[str]] = {
             <!-- Feedback Loop Diagram -->
             <div class="modal-diagram" style="font-size: 0.8rem;">
 ┌─────────────────────────────────────────────────────────────────────────────────┐
-│              Observability → Agent Feedback Loop (Recursive Self-Improvement)   │
+│              Observability → Developer Review → Agent-assisted Change           │
 ├─────────────────────────────────────────────────────────────────────────────────┤
 │                                                                                 │
 │   ┌─────────────┐     ┌─────────────┐     ┌─────────────┐     ┌─────────────┐  │
@@ -9926,8 +9955,8 @@ FALLBACK_CHAIN: dict[str, list[str]] = {
 
             <!-- Recursive Self-Improvement Workflow -->
             <h4 style="color: #8b5cf6; margin: 1.5rem 0 0.75rem; font-size: 0.95rem;">
-                <span class="lang-ko">🔄 재귀적 자기개선 클러스터 워크플로우</span>
-                <span class="lang-en">🔄 Recursive Self-Improvement Cluster Workflow</span>
+                <span class="lang-ko">🔄 운영자가 검토하는 클러스터 개선 절차</span>
+                <span class="lang-en">🔄 Operator-reviewed Cluster Improvement</span>
             </h4>
             <div class="modal-diagram" style="font-size: 0.7rem; margin-bottom: 1rem;">
 ┌─────────────────────────────────────────────────────────────────────────────────┐
@@ -10023,20 +10052,20 @@ FALLBACK_CHAIN: dict[str, list[str]] = {
                 <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
                     <span style="font-size: 1.2rem;">🔁</span>
                     <strong style="color: var(--primary); font-size: 0.95rem;">
-                        <span class="lang-ko">재귀적 자기개선 루프</span>
-                        <span class="lang-en">Recursive Self-Improvement Loop</span>
+                        <span class="lang-ko">개발 지식의 보존과 재사용</span>
+                        <span class="lang-en">Retained Development Knowledge</span>
                     </strong>
                 </div>
                 <div style="color: var(--text-secondary); font-size: 0.85rem; line-height: 1.7;">
                     <span class="lang-ko">
                         매 세션의 산출물이 <code style="color: #f59e0b;">reports/</code>에 축적되고, 이는 다음 세션의 <code style="color: #3b82f6;">foundations/</code>가 되어 Agent의 판단 근거로 작용<br>
-                        반복 작업은 <code style="color: #8b5cf6;">skills/</code>로 정제되어 코딩 에이전트(세션) 온보딩 비용 없이 즉시 재사용<br>
-                        → <strong style="color: var(--primary);">루프를 거듭할수록 프로젝트 특화된 의사결정 정밀도가 누적 상승</strong>
+                        반복 절차는 <code style="color: #8b5cf6;">skills/</code>로 정리해 다음 개발 세션에서 참조<br>
+                        <strong style="color: var(--primary);">지식의 보존과 판단 품질의 향상은 별도 검증 대상입니다.</strong>
                     </span>
                     <span class="lang-en">
                         Each session's outputs accumulate in <code style="color: #f59e0b;">reports/</code>, becoming <code style="color: #3b82f6;">foundations/</code> for next session as Agent's decision basis<br>
-                        Repetitive tasks are refined into <code style="color: #8b5cf6;">skills/</code>, instantly reusable without coding agent (session) onboarding cost<br>
-                        → <strong style="color: var(--primary);">Each loop iteration compounds project-specific decision precision</strong>
+                        Repeated procedures are documented in <code style="color: #8b5cf6;">skills/</code> for later development sessions<br>
+                        <strong style="color: var(--primary);">Retained knowledge and improved decision quality require separate evidence.</strong>
                     </span>
                 </div>
             </div>
@@ -13337,8 +13366,8 @@ celery -A scan_worker worker --pool=gevent --concurrency=100
             </table>
             <div style="margin-top: 1rem; padding: 0.8rem; background: rgba(255, 165, 0, 0.1); border-radius: 8px; border-left: 3px solid rgba(255, 165, 0, 0.8);">
                 <strong style="color: rgba(255, 165, 0, 0.9);">
-                    <span class="lang-ko">🔁 Recursive Self-Improvement Loop</span>
-                    <span class="lang-en">🔁 Recursive Self-Improvement Loop</span>
+                    <span class="lang-ko">작업 내 재평가와 제한된 재시도 (B0)</span>
+                    <span class="lang-en">Task-local Re-evaluation and Bounded Retry (B0)</span>
                 </strong>
                 <div style="margin-top: 0.5rem; color: var(--text-secondary); font-size: 0.85rem;">
                     <span class="lang-ko">Fallback 결과도 Eval Agent로 재평가하여 품질 기준 충족 시까지 반복. 무한 루프 방지를 위해 최대 재시도 횟수 제한.</span>
