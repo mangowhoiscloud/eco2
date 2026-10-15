@@ -2,7 +2,7 @@
 
 Public landing page and downloadable PDF for the Eco² Agent Workflow technical portfolio.
 
-- Site: https://mangowhoiscloud.github.io/eco2/
+- Site: https://mangowhois.ai/eco2/ (the GitHub Pages address now redirects there)
 - PDF: https://mangowhoiscloud.github.io/eco2/report.pdf
 - RSI roadmap and terminology: [current scope, source evidence, next tests](docs/rsi-roadmap.md) (한국어 / English)
 
